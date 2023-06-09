@@ -5,24 +5,34 @@ import java.util.Scanner;
 public class MusicaPatinhos {
 
 	public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+	
+		Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite o número de patinhos: \n");
-        int patinhos = scanner.nextInt(); 
-        scanner.nextLine(); 
-        
-        System.out.println("---------- Musica Patinhos ----------\n");
+        int patinhos;
 
+        do {
+            System.out.print("Digite o número de patinhos: ");
+            if (scanner.hasNextInt()) {
+                patinhos = scanner.nextInt();
+                scanner.nextLine();
+                if (patinhos < 1) {
+                    System.out.println("Entrada inválida. Digite um número inteiro maior ou igual a 1.");
+                }
+            } else {
+                scanner.nextLine();
+                System.out.println("Entrada inválida. Digite um número inteiro maior ou igual a 1.");
+                patinhos = 0;
+            }
+        } while (patinhos < 1);
 
-		System.out.println();
+        System.out.println("---------- Música dos Patinhos ----------\n");
 
+        inicioDoDesaparecimentoDePatinhos(patinhos);
 
-		inicioDoDesaparecimentoDePatinhos(patinhos);
+        buscaDosPatinhos(patinhos);
 
-		buscaDosPatinhos(patinhos);
-
-		scanner.close();
-	}
+        scanner.close();
+    }
 
 	private static void inicioDoDesaparecimentoDePatinhos(int patinhos) {
 		for (int i = patinhos; i > 0; i--) {
@@ -57,6 +67,5 @@ public class MusicaPatinhos {
 		} else {
 			System.out.println("E os " + patinhos + " patinhos voltaram de lá");
 		}
-	}
+	} 
 }
-
